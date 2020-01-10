@@ -127,3 +127,13 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+
+# Vim
+*.swp
+
+# VS Code
+.vscode
+
+# Various data and output folders
+data/
+output/
