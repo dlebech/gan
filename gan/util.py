@@ -8,7 +8,8 @@ import imageio
 
 
 def generate_gif(gif_file, image_dir):
-    """Search the given output directory for image files and stitch them together into a GIF."""
+    """Search the given output directory for image files and stitch them
+    together into a GIF."""
     with imageio.get_writer(gif_file, mode="I") as writer:
         filenames = glob.glob(f"{image_dir}/image*.png")
         filenames = sorted(filenames)
@@ -23,3 +24,12 @@ def generate_gif(gif_file, image_dir):
             writer.append_data(image)
         image = imageio.imread(filename)
         writer.append_data(image)
+
+
+def generate_mp4(mp4_file, image_dir):
+    """Search the given output directory for image files and stitch them
+    together into a GIF."""
+    with imageio.get_writer(mp4_file, mode="I", fps=15) as writer:
+        filenames = glob.glob(f"{image_dir}/image*.png")
+        for filename in sorted(filenames):
+            writer.append_data(imageio.imread(filename))
