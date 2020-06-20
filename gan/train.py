@@ -137,7 +137,7 @@ def generate_and_save_images(model, epoch, test_input, output_dir):
 
 
 def train(data_dir, width, height, channels, epochs, batch_size, output_dir="output"):
-    run_name = datetime.datetime.now().isoformat(timespec="seconds")
+    run_name = datetime.datetime.now().isoformat(timespec="seconds").replace(":", "")
     run_dir = os.path.join(output_dir, run_name)
     checkpoint_dir = os.path.join(run_dir, "checkpoints")
     image_dir = os.path.join(run_dir, "images")
