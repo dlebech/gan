@@ -1,2 +1,8 @@
+.pytest_cache/
+.vscode/
+
 data/
 output/
+post/
+tests/
+images/

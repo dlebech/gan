@@ -152,7 +152,7 @@ def train(data_dir, width, height, channels, epochs, batch_size, output_dir="out
     # Create 16 random seeds with that stay the same during training.
     seed = tf.random.normal([16, noise_dim])
 
-    ds, _ = dataset.create_dataset(data_dir, width, height)
+    ds, _ = dataset.create_dataset(data_dir, width, height, channels)
     train_ds = ds.shuffle(1000).batch(batch_size)
 
     generator = create_generator_model(

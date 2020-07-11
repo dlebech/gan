@@ -5,6 +5,8 @@
 import glob
 
 import imageio
+import requests
+from tqdm import tqdm
 
 
 def generate_gif(gif_file, image_dir):
@@ -33,3 +35,21 @@ def generate_mp4(mp4_file, image_dir):
         filenames = glob.glob(f"{image_dir}/image*.png")
         for filename in sorted(filenames):
             writer.append_data(imageio.imread(filename))
+
+
+def download_file(url, filename):
+    # https://stackoverflow.com/a/37573701/2021517
+    # Streaming, so we can iterate over the response.
+    r = requests.get(url, stream=True)
+
+    # Total size in bytes.
+    total_size = int(r.headers.get("content-length", 0))
+    block_size = 1024  # 1 Kibibyte
+    t = tqdm(total=total_size, unit="iB", unit_scale=True)
+    with open(filename, "wb") as f:
+        for data in r.iter_content(block_size):
+            t.update(len(data))
+            f.write(data)
+    t.close()
+    if total_size != 0 and t.n != total_size:
+        print("ERROR, something went wrong")
