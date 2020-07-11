@@ -5,7 +5,7 @@
 
 Experiments with image generation using generative adversarial networks (GANs).
 
-![Shape](images/shape.png) ![Cartoon](images/cartoon.png) 
+![Shape](images/shape.png) ![Cartoon](images/cartoon.png) ![Coco](images/coco.png)
 
 ### Install dependencies
 
@@ -24,7 +24,12 @@ You can create some toy data or download a dataset. For example, to create a bun
 python -m gan.cli dataset shapes
 ```
 
-Use `python -m gan.cli dataset -h` to see the options.
+Use `python -m gan.cli dataset -h` to see the options. Currently supports the following datasets:
+
+- `shapes`: Shapes of random size, currently only ellipse shapes.
+- `cartoon`: Cartoon avatars (see below).
+- `coco`: [Common Objects in Context](https://cocodataset.org/). Currently only using the 2017 validation dataset (1GB download, 2.4GB unzipped), because it is limited in size.
+  - This dataset also includes captions.
 
 #### Cartoon dataset
 

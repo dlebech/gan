@@ -27,6 +27,11 @@ def dataset_run(args):
         tar_filename = os.path.join(data_dir, "cartoon.tgz")
         data_dir = os.path.join(data_dir, "cartoon")
         dataset.prepare_cartoon(data_dir, tar_filename)
+    elif args.dataset_name == "coco":
+        zip_dir = data_dir
+        image_dir = os.path.join(data_dir, "coco")
+        text_dir = os.path.join(data_dir, "coco_text")
+        dataset.prepare_coco(image_dir, text_dir, zip_dir)
 
 
 def train_run(args):
@@ -76,7 +81,9 @@ def cli():
 
     # Datasources for data preparation.
     dataset.add_argument(
-        "dataset_name", help="Name of the dataset", choices=["cartoon", "shapes"]
+        "dataset_name",
+        help="Name of the dataset",
+        choices=["cartoon", "shapes", "coco"],
     )
     dataset.add_argument(
         "-d",
